@@ -10,6 +10,7 @@
             </a>
         </div>
     </x-slot>
+
     <div class="max-w-md mx-auto mt-8 p-4 bg-white border border-gray-200 rounded-lg shadow-md">
         <h2 class="text-center text-lg font-bold mb-4">Toko Kelontong Pak Jayusman</h2>
         <div class="text-sm mb-4">
@@ -39,12 +40,13 @@
         </table>
 
         <!-- Total -->
-        <div class="border-t border-gray-300 pt-2 text-right">
-            <p class="font-bold">Total: Rp {{ number_format($transaction->total, 0, ',', '.') }}</p>
+        <div class="border-t border-gray-300 pt-4 text-center">
+            <p class="font-bold text-2xl text-white bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+                Total Pembayaran: Rp {{ number_format($transaction->total, 0, ',', '.') }}
+            </p>
         </div>
 
         <!-- Footer -->
         <p class="text-center text-xs mt-4">Anda puas kami senang!</p>
-
     </div>
 </x-app-layout>

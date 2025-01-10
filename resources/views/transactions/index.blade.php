@@ -1,65 +1,38 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center bg-white dark:bg-gray-700 text-red-400 dark:text-gray-300 py-4 px-6 rounded-lg shadow-lg">
-            <h2 class="font-semibold text-xl leading-tight">
+        <div class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-6 px-8 rounded-lg shadow-lg">
+            <h2 class="font-semibold text-2xl leading-tight">
                 {{ __('Cabang Cipanas') }}
             </h2>
-        </div>
-    </x-slot>
-
-    <div class="max-w-7xl mx-auto mt-6 px-4">
-        <!-- Search Form -->
-        <form method="GET" action="{{ route('transaction') }}" class="mb-8">
-            <div class="flex items-center space-x-4">
-                <input
-                    type="text"
-                    name="search_product"
-                    value="{{ $search }}"
-                    placeholder="Cari produk..."
-                    class="w-full px-6 py-3 border border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
-                />
-                <button
-                    type="submit"
-                    class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200"
-                >
+            <div class="relative">
+                <input type="text" name="search_product" value="{{ $search }}" placeholder="Cari produk..."
+                    class="px-4 py-2 w-72 bg-gray-200 text-gray-700 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 focus:outline-none">
                     Cari
                 </button>
             </div>
-        </form>
+        </div>
+    </x-slot>
 
+    <div class="max-w-7xl mx-auto mt-8 px-4">
         <!-- Transaction Form -->
-        <form action="{{ route('transaction.store') }}" method="POST" id="transaction-form">
+        <form action="{{ route('transaction.store') }}" method="POST" id="transaction-form" class="space-y-10">
             @csrf
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="col-span-2 sm:col-span-2 lg:col-span-2">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2 space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         @forelse ($products as $product)
-                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transition-shadow p-6">
-                                <div class="text-center mb-6">
-                                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-52 object-cover rounded-lg">
+                            <div class="bg-white dark:bg-gray-700 hover:shadow-lg transition-shadow rounded-lg p-4">
+                                <div class="relative">
+                                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-md shadow-md">
+                                    <div class="absolute top-0 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded-br-md">Stok: {{ $product->stock }}</div>
                                 </div>
-                                <div class="text-center text-gray-800 dark:text-gray-100">
-                                    <h3 class="font-semibold text-xl">{{ $product->name }}</h3>
-                                    <p class="text-sm">Stok: {{ $product->stock }}</p>
-                                    <p class="text-lg font-bold text-red-600">Rp {{ number_format($product->price, 2) }}</p>
-                                    <div class="mt-4 flex justify-center items-center space-x-4">
-                                        <input
-                                            type="checkbox"
-                                            name="product_ids[]"
-                                            value="{{ $product->id }}"
-                                            data-name="{{ $product->name }}"
-                                            data-price="{{ $product->price }}"
-                                            class="mr-2"
-                                        />
-                                        <input
-                                            type="number"
-                                            name="qty[{{ $product->id }}]"
-                                            min="1"
-                                            max="{{ $product->stock }}"
-                                            value="1"
-                                            class="w-16 bg-gray-100 dark:bg-gray-700 text-center border rounded-md"
-                                            data-price="{{ $product->price }}"
-                                        />
+                                <div class="mt-4 text-center">
+                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ $product->name }}</h3>
+                                    <p class="mt-2 text-lg font-bold text-blue-500">Rp {{ number_format($product->price, 2) }}</p>
+                                    <div class="flex items-center justify-center mt-4 space-x-4">
+                                        <input type="checkbox" name="product_ids[]" value="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}" class="mr-2 text-blue-600"/>
+                                        <input type="number" name="qty[{{ $product->id }}]" min="1" max="{{ $product->stock }}" value="1" class="w-16 bg-gray-100 text-center border rounded-md">
                                     </div>
                                 </div>
                             </div>
@@ -71,46 +44,45 @@
                     </div>
                 </div>
 
-                <!-- Transaction Summary Section -->
-                <div class="col-span-1 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl">
-    <h2 class="text-2xl text-red-600 dark:text-gray-100 font-bold mb-6 text-center">Transaksi</h2>
+                <!-- Transaction Summary -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl text-blue-600 dark:text-gray-100 font-bold mb-6 text-center">Ringkasan Transaksi</h2>
 
-    <div id="selected-products" class="mb-6">
-        <h3 class="text-lg text-red-600 dark:text-gray-100 font-semibold mb-4">Produk yang Dipilih:</h3>
-        <ul id="product-list" class="list-none p-0 space-y-3"></ul>
-    </div>
-
-    <!-- Total Payment -->
-    <div class="text-center mb-8">
-        <div class="flex justify-between items-center mb-3">
-            <span class="font-bold text-xl text-gray-600 dark:text-gray-200">Total Bayar:</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span id="total-amount" class="font-extrabold text-3xl text-red-600 dark:text-gray-100">Rp 0</span>
-        </div>
-        <div class="mt-3 px-4 py-2 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 rounded-full text-white shadow-lg text-xl">
-            <span id="total-amount" class="font-bold text-xl">Total Pembayaran: Rp 0</span>
-        </div>
-    </div>
-
-    <!-- Submit Button -->
-    <div class="text-center mt-6">
-        <x-danger-button
-            x-data
-            x-on:click="$dispatch('open-modal', 'success-transaction'); action='{{ route('transaction.store') }}'"
-            class="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200 shadow-xl transform hover:scale-105"
-        >
-            {{ __('Pesan') }}
-        </x-danger-button>
-    </div>
-</div>
-
-
-                <!-- Pagination -->
-                <div class="col-span-3 mt-6">
-                    <div class="flex justify-center">
-                        {{ $products->links() }}
+                    <div id="selected-products" class="mb-6 space-y-4">
+                        <h3 class="text-lg text-blue-600 dark:text-gray-100 font-semibold">Produk yang Dipilih:</h3>
+                        <ul id="product-list" class="list-none p-0 space-y-3"></ul>
                     </div>
+
+                    <div class="text-center mb-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-xl text-gray-600 dark:text-gray-200">Total Bayar:</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span id="total-amount" class="font-extrabold text-4xl text-blue-600 dark:text-gray-100">Rp 0</span>
+                        </div>
+                        <div class="flex justify-center items-center mb-8">
+                            <div class="bg-gradient-to-r from-green-400 via-blue-500 to-indigo-600 text-white text-xl py-3 px-6 rounded-full shadow-lg transform hover:scale-110 transition duration-300">
+                                <span id="total-amount" class="font-bold text-xl">Total Pembayaran: Rp 0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-6">
+                        <x-danger-button
+                            x-data
+                            x-on:click="$dispatch('open-modal', 'success-transaction'); action='{{ route('transaction.store') }}'"
+                            class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 shadow-lg transform hover:scale-105"
+                        >
+                            {{ __('Pesan') }}
+                        </x-danger-button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="col-span-3 mt-6">
+                <div class="flex justify-center">
+                    {{ $products->links() }}
                 </div>
             </div>
         </form>

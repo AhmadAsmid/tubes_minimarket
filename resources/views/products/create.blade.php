@@ -42,7 +42,7 @@
                 </div>
                 <div class="max-w-xl">
                     <x-input-label for="image_url" value="URL Gambar" />
-                    <x-text-input type="text" name="image_url" id="image_url" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:focus:ring-red-500" required placeholder="Masukkan URL gambar" />
+                    <x-text-input type="text" name="image_url" id="image_url" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:focus:ring-red-500" required placeholder="Masukkan URL gambar" />
                     <x-input-error class="mt-2" :messages="$errors->get('image_url')" />
                 </div>
             </div>

@@ -15,37 +15,37 @@ class UserSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Jayusman',
-            'email' => 'owner@gmail.com',
-            'username' => 'owner',
-            'password' => 'password',
-        ])->assignRole('owner');
+            'email' => 'pemilik@gmail.com',
+            'username' => 'pemilik',
+            'password' => '11111',
+        ])->assignRole('pemilik');
         User::factory()->create([
-            'name' => 'Kevin',
+            'name' => 'Ahmad ',
             'email' => 'manager@gmail.com',
-            'username' => 'manager',
-            'password' => 'password',
+            'username' => 'ahmad',
+            'password' => '11111',
             'store_id' => 1,
-        ])->assignRole('manager');
+        ])->assignRole('ahmad');
         User::factory()->create([
-            'name' => 'Asta',
-            'email' => 'cashier@gmail.com',
-            'username' => 'cashier',
-            'password' => 'password',
+            'name' => 'Rya',
+            'email' => 'rya@gmail.com',
+            'username' => 'rya',
+            'password' => '11111',
             'store_id' => 1,
-        ])->assignRole('cashier');
+        ])->assignRole('rya');
         User::factory()->create([
-            'name' => 'Kevin',
-            'email' => 'inventory@gmail.com',
-            'username' => 'inventory',
-            'password' => 'password',
+            'name' => 'aryo',
+            'email' => 'aryo@gmail.com',
+            'username' => 'aryo',
+            'password' => 'aryo',
             'store_id' => 1,
-        ])->assignRole('inventory');
+        ])->assignRole('aryo');
         User::factory()->create([
-            'name' => 'Mark',
-            'email' => 'inventory2@gmail.com',
-            'username' => 'inventory2',
-            'password' => 'password',
+            'name' => 'adam',
+            'email' => 'adam@gmail.com',
+            'username' => 'adam',
+            'password' => '11111',
             'store_id' => 2,
-        ])->assignRole('inventory');
+        ])->assignRole('adam');
     }
 }
