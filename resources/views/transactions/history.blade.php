@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center bg-white dark:bg-gray-700 text-blue-400 dark:text-gray-300 py-4 px-6">
+        <div class="flex justify-between items-center bg-white dark:bg-gray-700 text-red-400 dark:text-gray-300 py-4 px-6">
             <h2 class="font-semibold text-xl leading-tight">
                 {{ __('Cabang ' . $storeName) }}
             </h2>
@@ -33,7 +33,7 @@
                         <td>{{ $transaction->user->name }}</td>
 
                         <td class="border border-gray-300 px-4 py-2 flex space-x-2">
-                            <a href="{{ route('transaction.detail', $transaction->id) }}" class="bg-blue-400 dark:bg-blue-900 hover:bg-blue-300 dark:hover:bg-blue-700 text-white dark:text-gray-100 py-1 px-4 rounded">
+                            <a href="{{ route('transaction.detail', $transaction->id) }}" class="bg-red-400 dark:bg-red-900 hover:bg-red-300 dark:hover:bg-red-700 text-white dark:text-gray-100 py-1 px-4 rounded">
                                 Lihat Detail
                             </a>
                         </td>

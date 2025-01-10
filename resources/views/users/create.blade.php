@@ -59,8 +59,8 @@
 
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
-                        <x-secondary-button tag="a" href="{{ route('user') }}">Cancel</x-secondary-button>
-                        <x-primary-button name="save">Create</x-primary-button>
+                        <x-secondary-button tag="a" href="{{ route('user') }}">Batal</x-secondary-button>
+                        <x-primary-button name="save">Tambah</x-primary-button>
                     </form>
 
                 </div>

@@ -70,15 +70,15 @@
                     </div>
                 </div>
                 <div class="col-span-1 border rounded-lg shadow-md p-6 bg-white dark:bg-gray-700">
-                    <h2 class="text-xl text-blue-600 dark:text-gray-100 flex flex-col items-center justify-center font-bold mb-4">Transaksi</h2>
+                    <h2 class="text-xl text-red-600 dark:text-gray-100 flex flex-col items-center justify-center font-bold mb-4">Transaksi</h2>
 
                     <div id="selected-products" class="mb-4">
-                        <h3 class=" text-blue-600 dark:text-gray-100 font-bold mb-2">Produk yang Dipilih : </h3>
+                        <h3 class=" text-red-600 dark:text-gray-100 font-bold mb-2">Produk yang Dipilih : </h3>
                         <ul id="product-list" class="list-none p-0"></ul>
                     </div>
                     <div class="text-center flex justify-between items-center mt-4">
-                        <span class="font-bold text-lg dark:text-gray-100">Total Bayar:</span>
-                        <span id="total-amount" class="font-bold text-xl text-blue-600 dark:text-gray-100">Rp 0</span>
+                        <span class="font-bold text-lg text-red-600 dark:text-gray-100">Total Bayar:</span>
+                        <span id="total-amount" class="font-bold text-xl text-red-600 dark:text-gray-100">Rp 0</span>
                     </div>
                     <div class="text-center">
                         <x-danger-button

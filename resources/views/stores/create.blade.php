@@ -22,8 +22,8 @@
                             <x-text-input id="location" type="text" name="location" class="mt-1 block w-full" value="{{ old('location') }}" required />
                             <x-input-error class="mt-2" :messages="$errors->get('location')" />
                         </div>
-                        <x-secondary-button tag="a" href="{{ route('store') }}">Cancel</x-secondary-button>
-                        <x-primary-button name="save">Save</x-primary-button>
+                        <x-secondary-button tag="a" href="{{ route('store') }}">Batal</x-secondary-button>
+                        <x-primary-button name="save">Simpan</x-primary-button>
                     </form>
 
                 </div>
