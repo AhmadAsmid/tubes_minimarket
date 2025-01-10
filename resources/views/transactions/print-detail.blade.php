@@ -8,13 +8,19 @@
         body {
             font-family: Arial, sans-serif;
             font-size: 12px;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
             max-width: 400px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 20px;
+            background-color: #fff;
             border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         table {
@@ -24,7 +30,7 @@
 
         th, td {
             text-align: left;
-            padding: 5px;
+            padding: 8px;
         }
 
         th {
@@ -41,6 +47,49 @@
 
         .bold {
             font-weight: bold;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #fce4e4;
+            padding: 10px;
+            border-radius: 6px;
+            color: #d32f2f;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .total .amount {
+            font-size: 22px;
+            color: #d32f2f;
+        }
+
+        .total .label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* Add a little animation to total for emphasis */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .total {
+            animation: fadeIn 1s ease-in-out;
         }
     </style>
 </head>
@@ -72,8 +121,13 @@
             </tbody>
         </table>
 
-        <p class="text-right bold">Total: Rp {{ number_format($transaction->total, 0, ',', '.') }}</p>
-        <p class="text-center">Anda puas kami senang!</p>
+        <!-- Total Section with New Styling -->
+        <div class="total">
+            <span class="label">Total:</span>
+            <span class="amount">Rp {{ number_format($transaction->total, 0, ',', '.') }}</span>
+        </div>
+
+        <p class="text-center footer-text">Anda puas kami senang!</p>
     </div>
 </body>
 </html>
